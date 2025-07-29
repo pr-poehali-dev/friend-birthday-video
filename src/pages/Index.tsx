@@ -27,28 +27,11 @@ const Index = () => {
     thumbnail: '/img/aed60ce9-a654-4256-b142-7df3b59d48d3.jpg'
   };
 
-  const blooperVideos = [
-    {
-      id: 'blooper1',
-      title: 'Забавный момент #1',
-      description: 'Когда слова перепутались'
-    },
-    {
-      id: 'blooper2', 
-      title: 'Неудачный дубль #2',
-      description: 'Смешная реакция на подарок'
-    },
-    {
-      id: 'blooper3',
-      title: 'Блупер #3', 
-      description: 'Когда все пошло не по плану'
-    },
-    {
-      id: 'blooper4',
-      title: 'Забавная попытка #4',
-      description: 'Танцевальные неудачи'
-    }
-  ];
+  const blooperVideo = {
+    id: 'blooper1',
+    title: 'Bloopers',
+    description: 'они старались быть серьезными, но получалось не всегда'
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-yellow-50 to-purple-50 relative overflow-hidden">
@@ -130,31 +113,28 @@ const Index = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
-          {blooperVideos.map((video, index) => (
-            <Card 
-              key={video.id} 
-              className="bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-all duration-300 border-0 shadow-lg hover:shadow-xl hover:scale-105 cursor-pointer animate-fade-in-up"
-              style={{ animationDelay: `${0.6 + index * 0.1}s` }}
-              onClick={() => setActiveVideo(video.id)}
-            >
-              <CardContent className="p-6">
-                <div className="relative aspect-[9/16] bg-gradient-to-br from-yellow-200 to-pink-200 rounded-lg mb-4 group overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-yellow-300/50 to-pink-300/50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <div className="bg-white/90 rounded-full p-4 group-hover:bg-white transition-colors duration-300">
-                      <Icon name="Play" size={32} className="text-pink-500" />
-                    </div>
-                  </div>
-                  <div className="absolute top-3 left-3 bg-yellow-400 text-gray-800 px-3 py-1 rounded-full font-bold text-xs">
-                    БЛУПЕР #{index + 1}
+        <div className="flex justify-center">
+          <Card 
+            className="bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-all duration-300 border-0 shadow-lg hover:shadow-xl hover:scale-105 cursor-pointer animate-fade-in-up max-w-md"
+            style={{ animationDelay: '0.6s' }}
+            onClick={() => setActiveVideo(blooperVideo.id)}
+          >
+            <CardContent className="p-6">
+              <div className="relative aspect-[9/16] bg-gradient-to-br from-yellow-200 to-pink-200 rounded-lg mb-4 group overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-yellow-300/50 to-pink-300/50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <div className="bg-white/90 rounded-full p-4 group-hover:bg-white transition-colors duration-300">
+                    <Icon name="Play" size={32} className="text-pink-500" />
                   </div>
                 </div>
-                
-                <h3 className="text-xl font-bold text-gray-800 mb-2">{video.title}</h3>
-                <p className="text-gray-600">{video.description}</p>
-              </CardContent>
-            </Card>
-          ))}
+                <div className="absolute top-3 left-3 bg-yellow-400 text-gray-800 px-3 py-1 rounded-full font-bold text-xs">
+                  BLOOPERS
+                </div>
+              </div>
+              
+              <h3 className="text-xl font-bold text-gray-800 mb-2">{blooperVideo.title}</h3>
+              <p className="text-gray-600">{blooperVideo.description}</p>
+            </CardContent>
+          </Card>
         </div>
       </div>
 
@@ -177,7 +157,7 @@ const Index = () => {
           <div className="bg-white rounded-2xl p-6 max-w-4xl w-full max-h-[90vh] overflow-auto">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-2xl font-bold text-gray-800">
-                {activeVideo === 'main' ? mainVideo.title : blooperVideos.find(v => v.id === activeVideo)?.title}
+                {activeVideo === 'main' ? mainVideo.title : blooperVideo.title}
               </h3>
               <Button 
                 variant="ghost" 
