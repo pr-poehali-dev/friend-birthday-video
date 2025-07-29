@@ -72,8 +72,25 @@ const Index = () => {
 
       {/* Праздничный заголовок */}
       <div className="relative z-10 text-center py-16 px-4">
-        <h1 className="text-6xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-orange-400 via-yellow-400 via-green-400 via-blue-500 via-indigo-500 to-purple-500 animate-fade-in-up mb-4">
-          С Днём Рождения! 🎉
+        <h1 className="text-6xl md:text-8xl font-black animate-fade-in-up mb-4">
+          <span className="text-red-500">С</span>
+          <span className="text-orange-400"> </span>
+          <span className="text-yellow-400">Д</span>
+          <span className="text-green-400">н</span>
+          <span className="text-cyan-400">ё</span>
+          <span className="text-blue-500">м</span>
+          <span className="text-purple-500"> </span>
+          <span className="text-red-500">Р</span>
+          <span className="text-orange-400">о</span>
+          <span className="text-yellow-400">ж</span>
+          <span className="text-green-400">д</span>
+          <span className="text-cyan-400">е</span>
+          <span className="text-blue-500">н</span>
+          <span className="text-purple-500">и</span>
+          <span className="text-red-500">я</span>
+          <span className="text-orange-400">!</span>
+          <span className="text-yellow-400"> </span>
+          <span className="text-green-400">🎉</span>
         </h1>
         <p className="text-xl md:text-2xl text-gray-700 animate-fade-in-up font-medium" style={{ animationDelay: '0.2s' }}>
           Специальный выпуск новостей для Ани - нашей прекрасной зайки!
