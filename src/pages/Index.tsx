@@ -89,7 +89,7 @@ const Index = () => {
         <div className="max-w-4xl mx-auto">
           <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 animate-fade-in-up animate-pulse-glow" style={{ animationDelay: '0.4s' }}>
             <CardContent className="p-8">
-              <div className="relative aspect-video bg-gradient-to-br from-pink-200 to-purple-200 rounded-xl overflow-hidden group cursor-pointer">
+              <div className="relative aspect-[9/16] bg-gradient-to-br from-pink-200 to-purple-200 rounded-xl overflow-hidden group cursor-pointer max-w-md mx-auto">
                 <img 
                   src={mainVideo.thumbnail}
                   alt="Поздравительное видео"
@@ -139,7 +139,7 @@ const Index = () => {
               onClick={() => setActiveVideo(video.id)}
             >
               <CardContent className="p-6">
-                <div className="relative aspect-video bg-gradient-to-br from-yellow-200 to-pink-200 rounded-lg mb-4 group overflow-hidden">
+                <div className="relative aspect-[9/16] bg-gradient-to-br from-yellow-200 to-pink-200 rounded-lg mb-4 group overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-yellow-300/50 to-pink-300/50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <div className="bg-white/90 rounded-full p-4 group-hover:bg-white transition-colors duration-300">
                       <Icon name="Play" size={32} className="text-pink-500" />
@@ -188,7 +188,7 @@ const Index = () => {
               </Button>
             </div>
             
-            <div className="aspect-video bg-gray-100 rounded-xl flex items-center justify-center">
+            <div className="aspect-[9/16] bg-gray-100 rounded-xl flex items-center justify-center max-w-md mx-auto">
               <div className="text-center">
                 <Icon name="Video" size={64} className="text-gray-400 mb-4 mx-auto" />
                 <p className="text-gray-600 text-lg mb-4">
