@@ -139,7 +139,7 @@ const Index = () => {
       {/* Финальное праздничное сообщение */}
       <div className="text-center py-12 relative z-10">
         <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl max-w-2xl mx-auto p-8 animate-fade-in-up" style={{ animationDelay: '1s' }}>
-          <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500 mb-4">Официальное заявление! 💝</h3>
+          <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500 mb-4">Официальное заявление! ❤️</h3>
           <p className="text-lg text-gray-700">Анюта, ты — человек, для которого мы готовы устроить спецвыпуск новостей, составить три графика, опросить плюшевых зверей и снять кучу неудачных, но смешных дублей 🎬😂
 Потому что ты того стоишь ✨ Ты — наше «вау», даже когда всё вокруг «ну такое» 🌥
 
