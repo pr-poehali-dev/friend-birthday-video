@@ -94,7 +94,7 @@ const Index = () => {
               </div>
               
               <div className="mt-6 text-center">
-                <h2 className="text-3xl font-bold text-gray-800 mb-2">{mainVideo.title}</h2>
+                <h2 className="text-3xl font-bold text-gray-800 mb-2">Спецвыпуск программы новостей</h2>
                 <p className="text-gray-600 text-lg">{mainVideo.description}</p>
               </div>
             </CardContent>
