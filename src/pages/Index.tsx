@@ -18,19 +18,7 @@ const Index = () => {
     />
   ));
 
-  const balloonElements = Array.from({ length: 8 }, (_, i) => (
-    <div
-      key={i}
-      className="absolute text-4xl animate-balloon-float"
-      style={{
-        left: `${10 + i * 12}%`,
-        top: `${10 + Math.random() * 20}%`,
-        animationDelay: `${i * 0.5}s`
-      }}
-    >
-      🎈
-    </div>
-  ));
+
 
   const mainVideo = {
     id: 'main',
@@ -67,7 +55,6 @@ const Index = () => {
       {/* Анимированные элементы фона */}
       <div className="fixed inset-0 pointer-events-none">
         {confettiElements}
-        {balloonElements}
       </div>
 
       {/* Праздничный заголовок */}
