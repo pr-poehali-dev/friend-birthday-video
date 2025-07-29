@@ -72,7 +72,7 @@ const Index = () => {
 
       {/* Праздничный заголовок */}
       <div className="relative z-10 text-center py-16 px-4">
-        <h1 className="text-7xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-500 animate-fade-in-up mb-4 drop-shadow-2xl">
+        <h1 className="text-6xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-yellow-300 to-purple-600 animate-fade-in-up mb-4">
           С Днём Рождения! 🎉
         </h1>
         <p className="text-xl md:text-2xl text-gray-700 animate-fade-in-up font-medium" style={{ animationDelay: '0.2s' }}>
