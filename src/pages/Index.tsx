@@ -100,21 +100,32 @@ const Index = () => {
           <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 animate-fade-in-up animate-pulse-glow" style={{ animationDelay: '0.4s' }}>
             <CardContent className="p-8">
               <div className="relative aspect-[9/16] bg-gradient-to-br from-pink-200 to-purple-200 rounded-xl overflow-hidden group cursor-pointer max-w-md mx-auto">
-                <img 
-                  src={mainVideo.thumbnail}
-                  alt="Поздравительное видео"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300 flex items-center justify-center">
-                  <Button 
-                    size="lg"
-                    className="bg-white/90 text-pink-600 hover:bg-white hover:scale-110 transition-all duration-300 shadow-xl"
-                    onClick={() => setActiveVideo(mainVideo.id)}
-                  >
-                    <Icon name="Play" className="mr-2" size={24} />
-                    Смотреть поздравление
-                  </Button>
-                </div>
+                {uploadedMainVideo ? (
+                  <>
+                    <video 
+                      src={uploadedMainVideo} 
+                      className="w-full h-full object-cover"
+                      muted
+                    />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300 flex items-center justify-center">
+                      <Button 
+                        size="lg"
+                        className="bg-white/90 text-pink-600 hover:bg-white hover:scale-110 transition-all duration-300 shadow-xl"
+                        onClick={() => setActiveVideo(mainVideo.id)}
+                      >
+                        <Icon name="Play" className="mr-2" size={24} />
+                        Смотреть поздравление
+                      </Button>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <FileUpload 
+                      onFileSelect={handleMainVideoUpload}
+                      className="h-full border-0 bg-transparent"
+                    />
+                  </>
+                )}
                 <div className="absolute top-4 left-4 bg-pink-500 text-white px-4 py-2 rounded-full font-bold text-sm">
                   ✨ ГЛАВНОЕ ВИДЕО
                 </div>
@@ -147,11 +158,25 @@ const Index = () => {
           >
             <CardContent className="p-6">
               <div className="relative aspect-[9/16] bg-gradient-to-br from-yellow-200 to-pink-200 rounded-lg mb-4 group overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-yellow-300/50 to-pink-300/50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <div className="bg-white/90 rounded-full p-4 group-hover:bg-white transition-colors duration-300">
-                    <Icon name="Play" size={32} className="text-pink-500" />
-                  </div>
-                </div>
+                {uploadedBlooperVideo ? (
+                  <>
+                    <video 
+                      src={uploadedBlooperVideo} 
+                      className="w-full h-full object-cover"
+                      muted
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-br from-yellow-300/50 to-pink-300/50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <div className="bg-white/90 rounded-full p-4 group-hover:bg-white transition-colors duration-300">
+                        <Icon name="Play" size={32} className="text-pink-500" />
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <FileUpload 
+                    onFileSelect={handleBlooperVideoUpload}
+                    className="h-full border-0 bg-transparent"
+                  />
+                )}
                 <div className="absolute top-3 left-3 bg-yellow-400 text-gray-800 px-3 py-1 rounded-full font-bold text-xs">
                   BLOOPERS
                 </div>
