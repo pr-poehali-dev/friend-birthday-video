@@ -6,8 +6,8 @@ import FileUpload from '@/components/FileUpload';
 
 const Index = () => {
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
-  const [uploadedMainVideo, setUploadedMainVideo] = useState<string | null>(null);
-  const [uploadedBlooperVideo, setUploadedBlooperVideo] = useState<string | null>(null);
+  const [uploadedMainVideo, setUploadedMainVideo] = useState<string | null>('https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4');
+  const [uploadedBlooperVideo, setUploadedBlooperVideo] = useState<string | null>('https://sample-videos.com/zip/10/mp4/SampleVideo_640x360_1mb.mp4');
   const [showMainUpload, setShowMainUpload] = useState(false);
   const [showBlooperUpload, setShowBlooperUpload] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -206,43 +206,49 @@ const Index = () => {
               <h3 className={`text-2xl font-bold ${isFullscreen ? 'text-white' : 'text-gray-800'}`}>
                 {activeVideo === 'main' ? mainVideo.title : blooperVideo.title}
               </h3>
-              <div className="flex gap-2">
-                {((activeVideo === 'main' && uploadedMainVideo) || (activeVideo === blooperVideo.id && uploadedBlooperVideo)) && (
-                  <Button 
-                    variant="ghost" 
-                    size="sm"
-                    onClick={toggleFullscreen}
-                    className={isFullscreen ? 'text-white hover:bg-white/20' : ''}
-                  >
-                    <Icon name={isFullscreen ? "Minimize2" : "Maximize2"} size={20} />
-                  </Button>
-                )}
-                <Button 
-                  variant="ghost" 
-                  size="sm"
-                  onClick={exitFullscreen}
-                  className={isFullscreen ? 'text-white hover:bg-white/20' : ''}
-                >
-                  <Icon name="X" size={24} />
-                </Button>
-              </div>
+              <Button 
+                variant="ghost" 
+                size="sm"
+                onClick={exitFullscreen}
+                className={isFullscreen ? 'text-white hover:bg-white/20' : ''}
+              >
+                <Icon name="X" size={24} />
+              </Button>
             </div>
             
-            <div className={`${isFullscreen ? 'flex-1 flex items-center justify-center' : 'aspect-[9/16] bg-gray-100 rounded-xl flex items-center justify-center max-w-md mx-auto'}`}>
+            <div className={`${isFullscreen ? 'flex-1 flex items-center justify-center' : 'aspect-[9/16] bg-gray-100 rounded-xl flex items-center justify-center max-w-md mx-auto'} relative`}>
               {(activeVideo === 'main' && uploadedMainVideo) ? (
-                <video 
-                  src={uploadedMainVideo} 
-                  controls 
-                  className={`${isFullscreen ? 'max-w-full max-h-full object-contain' : 'w-full h-full rounded-xl'}`}
-                  autoPlay
-                />
+                <div className="relative w-full h-full">
+                  <video 
+                    src={uploadedMainVideo} 
+                    controls 
+                    className={`${isFullscreen ? 'max-w-full max-h-full object-contain' : 'w-full h-full rounded-xl'}`}
+                    autoPlay
+                  />
+                  <Button 
+                    onClick={toggleFullscreen}
+                    className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white p-2 rounded-lg"
+                    size="sm"
+                  >
+                    <Icon name={isFullscreen ? "Minimize2" : "Maximize2"} size={16} />
+                  </Button>
+                </div>
               ) : (activeVideo === blooperVideo.id && uploadedBlooperVideo) ? (
-                <video 
-                  src={uploadedBlooperVideo} 
-                  controls 
-                  className={`${isFullscreen ? 'max-w-full max-h-full object-contain' : 'w-full h-full rounded-xl'}`}
-                  autoPlay
-                />
+                <div className="relative w-full h-full">
+                  <video 
+                    src={uploadedBlooperVideo} 
+                    controls 
+                    className={`${isFullscreen ? 'max-w-full max-h-full object-contain' : 'w-full h-full rounded-xl'}`}
+                    autoPlay
+                  />
+                  <Button 
+                    onClick={toggleFullscreen}
+                    className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white p-2 rounded-lg"
+                    size="sm"
+                  >
+                    <Icon name={isFullscreen ? "Minimize2" : "Maximize2"} size={16} />
+                  </Button>
+                </div>
               ) : (
                 <div className="text-center">
                   <Icon name="Video" size={64} className={`${isFullscreen ? 'text-white' : 'text-gray-400'} mb-4 mx-auto`} />
