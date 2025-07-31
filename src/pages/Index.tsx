@@ -123,25 +123,7 @@ const Index = () => {
               <div className="mt-6 text-center">
                 <h2 className="text-3xl font-bold text-gray-800 mb-2">Спецвыпуск программы новостей</h2>
                 <p className="text-gray-600 text-lg">{mainVideo.description}</p>
-                <div className="mt-4 flex gap-3 justify-center">
-                  <Button 
-                    onClick={() => setShowMainUpload(true)}
-                    className="bg-pink-500 hover:bg-pink-600 text-white"
-                  >
-                    <Icon name="Upload" className="mr-2" size={16} />
-                    Загрузить видео
-                  </Button>
-                  {uploadedMainVideo && (
-                    <Button 
-                      onClick={() => setUploadedMainVideo(null)}
-                      variant="outline"
-                      className="border-pink-500 text-pink-500 hover:bg-pink-50"
-                    >
-                      <Icon name="Trash2" className="mr-2" size={16} />
-                      Удалить
-                    </Button>
-                  )}
-                </div>
+
               </div>
             </CardContent>
           </Card>
@@ -177,32 +159,7 @@ const Index = () => {
               
               <h3 className="text-xl font-bold text-gray-800 mb-2">{blooperVideo.title}</h3>
               <p className="text-gray-600 mb-4">{blooperVideo.description}</p>
-              <div className="flex gap-2 justify-center">
-                <Button 
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setShowBlooperUpload(true);
-                  }}
-                  size="sm"
-                  className="bg-yellow-500 hover:bg-yellow-600 text-white"
-                >
-                  <Icon name="Upload" className="mr-2" size={14} />
-                  Загрузить видео
-                </Button>
-                {uploadedBlooperVideo && (
-                  <Button 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setUploadedBlooperVideo(null);
-                    }}
-                    size="sm"
-                    variant="outline"
-                    className="border-yellow-500 text-yellow-600 hover:bg-yellow-50"
-                  >
-                    <Icon name="Trash2" size={14} />
-                  </Button>
-                )}
-              </div>
+
             </CardContent>
           </Card>
         </div>
@@ -277,42 +234,7 @@ const Index = () => {
         </div>
       )}
 
-      {/* Модальные окна для загрузки файлов */}
-      {showMainUpload && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl p-6 max-w-md w-full">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-bold text-gray-800">Загрузить главное видео</h3>
-              <Button 
-                variant="ghost" 
-                size="sm"
-                onClick={() => setShowMainUpload(false)}
-              >
-                <Icon name="X" size={20} />
-              </Button>
-            </div>
-            <FileUpload onFileSelect={handleMainVideoUpload} />
-          </div>
-        </div>
-      )}
 
-      {showBlooperUpload && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl p-6 max-w-md w-full">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-bold text-gray-800">Загрузить видео блуперсов</h3>
-              <Button 
-                variant="ghost" 
-                size="sm"
-                onClick={() => setShowBlooperUpload(false)}
-              >
-                <Icon name="X" size={20} />
-              </Button>
-            </div>
-            <FileUpload onFileSelect={handleBlooperVideoUpload} />
-          </div>
-        </div>
-      )}
     </div>
   );
 };
