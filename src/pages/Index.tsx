@@ -10,6 +10,7 @@ const Index = () => {
   const [uploadedBlooperVideo, setUploadedBlooperVideo] = useState<string | null>(null);
   const [showMainUpload, setShowMainUpload] = useState(false);
   const [showBlooperUpload, setShowBlooperUpload] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   const confettiElements = Array.from({ length: 50 }, (_, i) => (
     <div
@@ -48,6 +49,15 @@ const Index = () => {
     const videoUrl = URL.createObjectURL(file);
     setUploadedBlooperVideo(videoUrl);
     setShowBlooperUpload(false);
+  };
+
+  const toggleFullscreen = () => {
+    setIsFullscreen(!isFullscreen);
+  };
+
+  const exitFullscreen = () => {
+    setIsFullscreen(false);
+    setActiveVideo(null);
   };
 
   return (
@@ -208,43 +218,56 @@ const Index = () => {
 
       {/* Модальное окно для воспроизведения видео */}
       {activeVideo && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl p-6 max-w-4xl w-full max-h-[90vh] overflow-auto">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-2xl font-bold text-gray-800">
+        <div className={`fixed inset-0 z-50 flex items-center justify-center ${isFullscreen ? 'bg-black' : 'bg-black/80 backdrop-blur-sm p-4'}`}>
+          <div className={`${isFullscreen ? 'w-full h-full flex flex-col' : 'bg-white rounded-2xl p-6 max-w-4xl w-full max-h-[90vh] overflow-auto'}`}>
+            <div className={`flex justify-between items-center mb-4 ${isFullscreen ? 'absolute top-4 left-4 right-4 z-10' : ''}`}>
+              <h3 className={`text-2xl font-bold ${isFullscreen ? 'text-white' : 'text-gray-800'}`}>
                 {activeVideo === 'main' ? mainVideo.title : blooperVideo.title}
               </h3>
-              <Button 
-                variant="ghost" 
-                size="sm"
-                onClick={() => setActiveVideo(null)}
-              >
-                <Icon name="X" size={24} />
-              </Button>
+              <div className="flex gap-2">
+                {((activeVideo === 'main' && uploadedMainVideo) || (activeVideo === blooperVideo.id && uploadedBlooperVideo)) && (
+                  <Button 
+                    variant="ghost" 
+                    size="sm"
+                    onClick={toggleFullscreen}
+                    className={isFullscreen ? 'text-white hover:bg-white/20' : ''}
+                  >
+                    <Icon name={isFullscreen ? "Minimize2" : "Maximize2"} size={20} />
+                  </Button>
+                )}
+                <Button 
+                  variant="ghost" 
+                  size="sm"
+                  onClick={exitFullscreen}
+                  className={isFullscreen ? 'text-white hover:bg-white/20' : ''}
+                >
+                  <Icon name="X" size={24} />
+                </Button>
+              </div>
             </div>
             
-            <div className="aspect-[9/16] bg-gray-100 rounded-xl flex items-center justify-center max-w-md mx-auto">
+            <div className={`${isFullscreen ? 'flex-1 flex items-center justify-center' : 'aspect-[9/16] bg-gray-100 rounded-xl flex items-center justify-center max-w-md mx-auto'}`}>
               {(activeVideo === 'main' && uploadedMainVideo) ? (
                 <video 
                   src={uploadedMainVideo} 
                   controls 
-                  className="w-full h-full rounded-xl"
+                  className={`${isFullscreen ? 'max-w-full max-h-full object-contain' : 'w-full h-full rounded-xl'}`}
                   autoPlay
                 />
               ) : (activeVideo === blooperVideo.id && uploadedBlooperVideo) ? (
                 <video 
                   src={uploadedBlooperVideo} 
                   controls 
-                  className="w-full h-full rounded-xl"
+                  className={`${isFullscreen ? 'max-w-full max-h-full object-contain' : 'w-full h-full rounded-xl'}`}
                   autoPlay
                 />
               ) : (
                 <div className="text-center">
-                  <Icon name="Video" size={64} className="text-gray-400 mb-4 mx-auto" />
-                  <p className="text-gray-600 text-lg mb-4">
+                  <Icon name="Video" size={64} className={`${isFullscreen ? 'text-white' : 'text-gray-400'} mb-4 mx-auto`} />
+                  <p className={`${isFullscreen ? 'text-white' : 'text-gray-600'} text-lg mb-4`}>
                     Здесь будет воспроизводиться видео
                   </p>
-                  <p className="text-gray-500 text-sm">
+                  <p className={`${isFullscreen ? 'text-gray-300' : 'text-gray-500'} text-sm`}>
                     Загрузите видеофайл для просмотра
                   </p>
                 </div>
